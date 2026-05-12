@@ -7,12 +7,14 @@ export default function TrendyPlants() {
       title: 'For Your Desks Decorations',
       price: '৳ 599/-',
       description: 'Enhance your workspace with a beautiful small plant decoration perfect for your work desk',
+      imageSrc: '/desk-decoration.png',
     },
     {
       id: 2,
       title: 'For Your Desks Decorations',
       price: '৳ 399/-',
       description: 'Add a touch of nature to your desk with these stylish plant holders',
+      imageSrc: '/desk-decoration-2.png'
     },
   ]
 
@@ -31,8 +33,26 @@ export default function TrendyPlants() {
             >
               <div className="flex flex-col sm:flex-row">
                 {/* Image Placeholder */}
-                <div className="bg-transparent h-48 sm:h-auto sm:w-48 flex items-center justify-center border-r border-white/10">
-                  <span className="text-gray-400">Plant Image</span>
+                <div className="bg-transparent w-full aspect-[3/4] sm:aspect-auto sm:w-72 sm:self-stretch flex items-center justify-center border-r border-white/10 overflow-hidden">
+                  {item.imageSrc ? (
+                    <img
+                      src={item.imageSrc}
+                      alt={item.title}
+                      className="h-full w-full object-contain"
+                      onError={(e) => {
+                        const img = e.currentTarget as HTMLImageElement
+                        img.style.display = 'none'
+                        const fallback = img.parentElement?.querySelector('[data-fallback]') as HTMLElement | null
+                        if (fallback) fallback.style.display = 'flex'
+                      }}
+                    />
+                  ) : null}
+                  <div
+                    data-fallback
+                    className={`${item.imageSrc ? 'hidden' : 'flex'} h-full w-full items-center justify-center`}
+                  >
+                    <span className="text-gray-400">Plant Image</span>
+                  </div>
                 </div>
 
                 {/* Content */}

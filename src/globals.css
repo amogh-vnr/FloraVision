@@ -113,6 +113,13 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-brand-dark: #131913;
+  --color-brand-card: rgba(27, 35, 28, 0.4);
+  --color-brand-light: #2a352b;
+  --color-brand-accent: #d8ed76;
+  --color-brand-text: #f2f5f1;
+  --color-brand-muted: #a3b3a4;
+  --color-brand-dark-transparent: rgba(19, 25, 19, 0.7);
 }
 
 @layer base {
@@ -121,6 +128,12 @@
   }
 
   body {
-    @apply bg-slate-950 text-white;
+    @apply bg-brand-dark text-brand-text antialiased;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-brand-card backdrop-blur-md rounded-[2rem] overflow-hidden;
   }
 }

@@ -14,30 +14,35 @@ export default function TopSellingPlants() {
       name: 'Plantain Lilies',
       price: '৳ 380/-',
       description: 'Beautiful flowering plant with unique patterns',
+      imageSrc: '/desk-decoration.png'
     },
     {
       id: 3,
       name: 'Cactus',
       price: '৳ 259/-',
       description: 'Low maintenance succulent plant',
+      imageSrc: '/cactus.png'
     },
     {
       id: 4,
       name: 'Swiss cheese Plant',
       price: '৳ 400/-',
       description: 'Popular climbing plant with unique leaves',
+      imageSrc: '/swiss.png'
     },
     {
       id: 5,
       name: 'Sanseviereia plant',
       price: '৳ 450/-',
       description: 'Snake plant with air purifying properties',
+      imageSrc: '/sanse.png'
     },
     {
       id: 6,
       name: 'Argan plant',
       price: '৳ 359/-',
       description: 'Exotic plant with wonderful foliage',
+      imageSrc: '/argan.png'
     },
   ]
 
@@ -55,12 +60,12 @@ export default function TopSellingPlants() {
               className="bg-transparent backdrop-blur-sm border border-white/15 rounded-3xl overflow-hidden hover:bg-transparent transition shadow-none"
             >
               {/* Image Placeholder */}
-              <div className="bg-transparent h-40 flex items-center justify-center overflow-hidden border-b border-white/10">
+              <div className="bg-transparent w-full aspect-[3/4] overflow-hidden border-b border-white/10">
                 {plant.imageSrc ? (
                   <img
                     src={plant.imageSrc}
                     alt={plant.name}
-                    className="h-full w-full object-contain p-4"
+                    className="h-full w-full object-contain"
                     onError={(e) => {
                       const img = e.currentTarget as HTMLImageElement
                       if (!img.dataset.fallbackTried) {

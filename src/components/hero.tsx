@@ -20,13 +20,13 @@ export default function Hero() {
 
           {/* Right Featured Product */}
           <div className="flex flex-col items-center">
-            <div className="bg-transparent backdrop-blur-sm border border-white/15 rounded-2xl p-6 w-full max-w-sm shadow-none">
+            <div className="bg-transparent backdrop-blur-sm rounded-2xl p-6 w-full max-w-sm shadow-none border border-white/15">
               {/* Product Image Placeholder */}
-              <div className="bg-transparent rounded-2xl h-64 mb-4 flex items-center justify-center overflow-hidden border border-white/10">
+                <div className="bg-transparent rounded-2xl mb-4 w-full aspect-[3/4] overflow-hidden">
                 <img
                   src="/images/plants/aglaonema.png"
                   alt="Aglaonema plant"
-                  className="h-full w-full object-contain p-6"
+                    className="h-full w-full object-contain"
                   onError={(e) => {
                     const img = e.currentTarget as HTMLImageElement
                     // If we haven't tried the root fallback yet, try it first

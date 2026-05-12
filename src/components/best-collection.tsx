@@ -10,9 +10,22 @@ export default function BestCollection() {
 
         <div className="bg-transparent backdrop-blur-sm border border-white/15 rounded-3xl overflow-hidden shadow-none">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-6 md:p-12">
-            {/* Image Placeholder */}
-            <div className="bg-transparent border border-white/10 rounded-2xl h-64 md:h-80 flex items-center justify-center">
-              <span className="text-gray-400">Plant Image</span>
+            {/* Image */}
+            <div className="bg-transparent border border-white/10 rounded-2xl h-64 md:h-80 flex items-center justify-center overflow-hidden">
+              <img
+                src="/aglaonema.png"
+                alt="Aglaonema plant"
+                className="h-full w-full object-contain"
+                onError={(e) => {
+                  const img = e.currentTarget as HTMLImageElement
+                  img.style.display = 'none'
+                  const fallback = img.parentElement?.querySelector('[data-fallback]') as HTMLElement | null
+                  if (fallback) fallback.style.display = 'flex'
+                }}
+              />
+              <div data-fallback className="hidden h-full w-full items-center justify-center">
+                <span className="text-gray-400">Aglaonema Image</span>
+              </div>
             </div>
 
             {/* Content */}
