@@ -1,79 +1,101 @@
 'use client'
 
+import { ShoppingBag } from 'lucide-react'
+
 export default function TrendyPlants() {
   const trendyItems = [
     {
       id: 1,
       title: 'For Your Desks Decorations',
-      price: '৳ 599/-',
-      description: 'Enhance your workspace with a beautiful small plant decoration perfect for your work desk',
+      price: 'Rs. 599/-',
+      description: 'I recently added a beautiful desk decoration plant to my workspace, and it has made such a positive difference!',
       imageSrc: '/desk-decoration.png',
+      align: 'left'
     },
     {
       id: 2,
       title: 'For Your Desks Decorations',
-      price: '৳ 399/-',
-      description: 'Add a touch of nature to your desk with these stylish plant holders',
-      imageSrc: '/desk-decoration-2.png'
+      price: 'Rs. 399/-',
+      description: 'The greenery adds a touch of nature and serenity to my desk, making it feel more inviting and calming',
+      imageSrc: '/desk-decoration-2.png',
+      align: 'right'
     },
   ]
 
   return (
-    <section className="bg-transparent py-12 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center relative overflow-hidden">
+      {/* Title with decorative border */}
+      <div className="relative mb-24 mt-10 inline-block">
+        <h2 className="text-2xl md:text-3xl font-bold text-white relative z-10 px-6 py-2">
           Our Trendy plants
         </h2>
+        {/* The thin border box wrapping around the text as seen in the design */}
+        <div className="absolute inset-0 border border-brand-accent/60 rounded-xl rounded-bl-sm rounded-tr-sm pointer-events-none -skew-x-6"></div>
+      </div>
 
-        <div className="flex flex-col gap-8">
-          {trendyItems.map((item) => (
-            <div
-              key={item.id}
-              className="bg-transparent backdrop-blur-sm border border-white/15 rounded-3xl overflow-hidden hover:bg-transparent transition w-full max-w-5xl mx-auto shadow-none"
-            >
-              <div className="flex flex-col sm:flex-row">
-                {/* Image Placeholder */}
-                <div className="bg-transparent w-full aspect-[3/4] sm:aspect-auto sm:w-72 sm:self-stretch flex items-center justify-center border-r border-white/10 overflow-hidden">
-                  {item.imageSrc ? (
-                    <img
-                      src={item.imageSrc}
-                      alt={item.title}
-                      className="h-full w-full object-contain"
-                      onError={(e) => {
-                        const img = e.currentTarget as HTMLImageElement
-                        img.style.display = 'none'
-                        const fallback = img.parentElement?.querySelector('[data-fallback]') as HTMLElement | null
-                        if (fallback) fallback.style.display = 'flex'
-                      }}
-                    />
-                  ) : null}
-                  <div
-                    data-fallback
-                    className={`${item.imageSrc ? 'hidden' : 'flex'} h-full w-full items-center justify-center`}
-                  >
-                    <span className="text-gray-400">Plant Image</span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 p-6 flex flex-col justify-center">
-                  <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-400 text-sm mb-4">{item.description}</p>
-                  <p className="text-green-400 font-bold text-lg mb-4">{item.price}</p>
-
-                  <div className="flex gap-3">
-                    <button className="flex-1 bg-transparent hover:bg-transparent text-white px-4 py-2 rounded-lg transition border border-white/20">
-                      Explore
-                    </button>
-                    <button className="bg-transparent hover:bg-transparent text-white px-4 py-2 rounded-lg transition border border-white/20">
-                      🛒
-                    </button>
-                  </div>
-                </div>
-              </div>
+      <div className="w-full max-w-5xl flex flex-col gap-24 md:gap-32 mt-10">
+        
+        {/* Top Card (Image Left, Text Right) */}
+        <div className="relative flex flex-col md:flex-row items-center bg-brand-card/60 backdrop-blur-md rounded-[3rem] p-8 md:p-12 md:pl-0 gap-8 md:gap-12 md:ml-auto w-full md:w-[90%]">
+          
+          <div className="w-full md:w-1/2 flex justify-center md:-ml-24 relative z-10">
+            <div className="w-64 h-64 md:w-80 md:h-80 -mt-20 md:-mt-32">
+              <img
+                src={trendyItems[0].imageSrc}
+                alt="Desk Decoration"
+                className="w-full h-full object-contain drop-shadow-2xl"
+              />
             </div>
-          ))}
+          </div>
+          
+          <div className="flex-1 text-center md:text-left z-10 md:pr-12">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-4 tracking-wide">{trendyItems[0].title}</h3>
+            <p className="text-brand-muted text-sm mb-6 leading-relaxed">
+              {trendyItems[0].description}
+            </p>
+            <div className="flex items-center gap-6 justify-center md:justify-start">
+              <span className="text-xl font-bold text-white">{trendyItems[0].price}</span>
+              <button className="border border-white/40 text-white px-8 py-2 rounded-xl hover:bg-white hover:text-brand-dark transition text-sm font-medium">
+                Explore
+              </button>
+              <button className="w-10 h-10 rounded-xl border border-white/40 flex items-center justify-center hover:bg-white hover:text-brand-dark text-white transition">
+                <ShoppingBag size={16} />
+              </button>
+            </div>
+          </div>
         </div>
+
+        {/* Bottom Card (Text Left, Image Right) */}
+        <div className="relative flex flex-col md:flex-row items-center bg-brand-card/60 backdrop-blur-md rounded-[3rem] p-8 md:p-12 md:pr-0 gap-8 md:gap-12 md:mr-auto w-full md:w-[90%]">
+          
+          <div className="flex-1 text-center md:text-left z-10 md:pl-12 order-2 md:order-1">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-4 tracking-wide">{trendyItems[1].title}</h3>
+            <p className="text-brand-muted text-sm mb-6 leading-relaxed">
+              {trendyItems[1].description}
+            </p>
+            <div className="flex items-center gap-6 justify-center md:justify-start">
+              <span className="text-xl font-bold text-white">{trendyItems[1].price}</span>
+              <button className="border border-white/40 text-white px-8 py-2 rounded-xl hover:bg-white hover:text-brand-dark transition text-sm font-medium">
+                Explore
+              </button>
+              <button className="w-10 h-10 rounded-xl border border-white/40 flex items-center justify-center hover:bg-white hover:text-brand-dark text-white transition">
+                <ShoppingBag size={16} />
+              </button>
+            </div>
+          </div>
+          
+          <div className="w-full md:w-1/2 flex justify-center md:-mr-24 relative z-10 order-1 md:order-2">
+            <div className="w-64 h-64 md:w-80 md:h-80 -mt-20 md:-mb-24">
+              <img
+                src={trendyItems[1].imageSrc}
+                alt="Desk Decoration"
+                className="w-full h-full object-contain drop-shadow-2xl"
+              />
+            </div>
+          </div>
+          
+        </div>
+
       </div>
     </section>
   )

@@ -6,58 +6,81 @@ export default function Footer() {
   const [email, setEmail] = useState('')
 
   return (
-    <footer className="bg-slate-950/60 border-t border-slate-800 py-12">
+    <footer className="pt-24 pb-12 mt-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">F</span>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+          
+          {/* Brand Column */}
+          <div className="md:col-span-5 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center shrink-0">
+                  <img
+                    src="/flora-vision-logo.png"
+                    alt="FloraVision logo"
+                    className="h-full w-full object-contain"
+                    onError={(e) => {
+                      const img = e.currentTarget as HTMLImageElement
+                      img.style.display = 'none'
+                      const fallback = img.parentElement?.querySelector('[data-fallback]') as HTMLElement | null
+                      if (fallback) fallback.style.display = 'flex'
+                    }}
+                  />
+                  <span
+                    data-fallback
+                    className="hidden text-white font-bold text-sm bg-brand-light w-full h-full items-center justify-center rounded-lg"
+                  >
+                    F
+                  </span>
+                </div>
+                <span className="text-white font-bold text-2xl tracking-wide">FloraVision.</span>
               </div>
-              <span className="text-white font-bold text-lg">FloraVision</span>
+              <p className="text-white font-medium text-[15px] leading-relaxed max-w-sm">
+                "From lush indoor greens to vibrant outdoor blooms, our plants are crafted to thrive and elevate your living environment."
+              </p>
             </div>
-            <p className="text-gray-400 text-sm">
-              From lush indoor gardens to vibrant outdoor spaces, our plants are cultivated to thrive and bring natural beauty to your surroundings.
-            </p>
+            
+            <div className="flex gap-8 mt-16 md:mt-32">
+              <a href="#" className="text-white font-bold hover:text-brand-accent transition">FB</a>
+              <a href="#" className="text-white font-bold hover:text-brand-accent transition">TW</a>
+              <a href="#" className="text-white font-bold hover:text-brand-accent transition">LI</a>
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition text-sm">Terms of Service</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition text-sm">Privacy</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition text-sm">FAQs</a></li>
+          {/* Quick Links Column */}
+          <div className="md:col-span-3 pt-2">
+            <h4 className="text-white font-bold text-lg mb-8">Quick Link's</h4>
+            <ul className="space-y-6">
+              <li><a href="#" className="text-white hover:text-brand-accent transition text-sm border-b border-white pb-1 inline-block">Home</a></li>
+              <li><a href="#" className="text-white hover:text-brand-accent transition text-sm border-b border-white pb-1 inline-block">Type's Of plant's</a></li>
+              <li><a href="#" className="text-white hover:text-brand-accent transition text-sm border-b border-white pb-1 inline-block">Contact</a></li>
+              <li><a href="#" className="text-white hover:text-brand-accent transition text-sm border-b border-white pb-1 inline-block">Privacy</a></li>
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div>
-            <h4 className="text-white font-bold mb-4">For Every Update</h4>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Your Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-slate-800 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm"
-              />
-              <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition font-medium">
-                Subscribe
-              </button>
+          {/* Newsletter Column */}
+          <div className="md:col-span-4 pt-2 flex flex-col justify-between">
+            <div>
+              <h4 className="text-white font-bold text-lg mb-8">For Every Update.</h4>
+              <div className="flex border border-white rounded-sm overflow-hidden h-12 w-full max-w-sm">
+                <input
+                  type="email"
+                  placeholder="Enter Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="flex-1 bg-transparent text-white px-4 py-2 focus:outline-none placeholder:text-gray-300 text-sm"
+                />
+                <button className="bg-white text-brand-dark px-6 py-2 font-bold text-sm hover:bg-gray-200 transition">
+                  SUBSCRIBE
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-16 md:mt-auto pb-1">
+              <p className="text-white text-sm">FloraVision © all right reserve</p>
             </div>
           </div>
-        </div>
 
-        {/* Bottom */}
-        <div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400 text-sm">FloraVision © All rights reserved</p>
-          <div className="flex gap-4">
-            <a href="#" className="text-gray-400 hover:text-white transition text-sm">FB</a>
-            <a href="#" className="text-gray-400 hover:text-white transition text-sm">TW</a>
-            <a href="#" className="text-gray-400 hover:text-white transition text-sm">LI</a>
-          </div>
         </div>
       </div>
     </footer>

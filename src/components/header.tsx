@@ -12,8 +12,24 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">F</span>
+            <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center">
+              <img
+                src="/flora-vision-logo.png"
+                alt="FloraVision logo"
+                className="h-full w-full object-contain"
+                onError={(e) => {
+                  const img = e.currentTarget as HTMLImageElement
+                  img.style.display = 'none'
+                  const fallback = img.parentElement?.querySelector('[data-fallback]') as HTMLElement | null
+                  if (fallback) fallback.style.display = 'flex'
+                }}
+              />
+              <span
+                data-fallback
+                className="hidden text-white font-bold text-sm"
+              >
+                F
+              </span>
             </div>
             <span className="text-white font-bold text-xl">FloraVision</span>
           </div>
