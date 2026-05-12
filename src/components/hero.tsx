@@ -42,7 +42,23 @@ export default function Hero() {
               <div className="flex items-center gap-3">
                 {/* Avatar Placeholder */}
                 <div className="w-10 h-10 bg-brand-light rounded-full border border-white/20 shrink-0 flex items-center justify-center overflow-hidden">
-                  <span className="text-[10px] text-brand-muted">Avatar</span>
+                  <img
+                    src="/ronie.png"
+                    alt="Ronnie Hamill"
+                    className="h-full w-full object-cover"
+                    onError={(e) => {
+                      const img = e.currentTarget as HTMLImageElement
+                      img.style.display = 'none'
+                      const fallback = img.parentElement?.querySelector('[data-fallback]') as HTMLElement | null
+                      if (fallback) fallback.style.display = 'flex'
+                    }}
+                  />
+                  <span
+                    data-fallback
+                    className="hidden text-[10px] text-brand-muted h-full w-full items-center justify-center"
+                  >
+                    Avatar
+                  </span>
                 </div>
                 <div>
                   <h4 className="text-sm font-semibold text-white mb-1">Ronnie Hamill</h4>
@@ -62,7 +78,7 @@ export default function Hero() {
 
         {/* Right Floating Plant Card */}
         <div className="mt-16 md:mt-0 self-end md:self-center md:mr-10">
-          <div className="glass-card p-6 flex flex-col items-center w-[300px] hover:border-brand-accent transition-colors duration-300">
+          <div className="glass-card !overflow-visible p-6 flex flex-col items-center w-[300px] hover:border-brand-accent transition-colors duration-300">
             {/* Plant Image */}
             <div className="w-48 h-56 -mt-16 mb-4 drop-shadow-2xl flex items-center justify-center">
               <img

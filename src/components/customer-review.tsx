@@ -10,6 +10,7 @@ export default function CustomerReview() {
       rating: 5,
       text: 'Just got the plants delivered and I&apos;m so happy with the quality. Great service and fast delivery. Highly recommended!',
       avatar: 'S',
+      avatarSrc: '/shelly.png',
     },
     {
       id: 2,
@@ -17,6 +18,7 @@ export default function CustomerReview() {
       rating: 5,
       text: 'Best quality plants I&apos;ve ever ordered online. Customer service was excellent and they answered all my questions quickly.',
       avatar: 'L',
+      avatarSrc: '/luna.jpg',
     },
     {
       id: 3,
@@ -24,6 +26,7 @@ export default function CustomerReview() {
       rating: 5,
       text: 'Amazing selection of plants and wonderful customer care. The plants arrived in perfect condition. Will definitely order again!',
       avatar: 'C',
+      avatarSrc: '/carol.png',
     },
   ]
 
@@ -41,8 +44,26 @@ export default function CustomerReview() {
               className="bg-transparent backdrop-blur-sm border border-white/15 p-6 rounded-3xl hover:bg-transparent transition shadow-none"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">{review.avatar}</span>
+                <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center overflow-hidden shrink-0">
+                  {review.avatarSrc ? (
+                    <img
+                      src={review.avatarSrc}
+                      alt={review.name}
+                      className="h-full w-full object-cover"
+                      onError={(e) => {
+                        const img = e.currentTarget as HTMLImageElement
+                        img.style.display = 'none'
+                        const fallback = img.parentElement?.querySelector('[data-fallback]') as HTMLElement | null
+                        if (fallback) fallback.style.display = 'flex'
+                      }}
+                    />
+                  ) : null}
+                  <span
+                    data-fallback
+                    className={`${review.avatarSrc ? 'hidden' : 'flex'} text-white font-bold text-sm h-full w-full items-center justify-center`}
+                  >
+                    {review.avatar}
+                  </span>
                 </div>
                 <div>
                   <h3 className="text-white font-bold">{review.name}</h3>
