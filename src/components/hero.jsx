@@ -9,7 +9,7 @@ export default function Hero() {
       id: 1,
       name: 'Aglaonema plant',
       category: 'Indoor Plant',
-      imageSrc: '/images/plants/aglaonema.png',
+      imageSrc: '/aglaonema.png',
       fallbackSrc: '/aglaonema.png',
     },
     {

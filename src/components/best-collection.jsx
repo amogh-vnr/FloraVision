@@ -8,28 +8,31 @@ export default function BestCollection() {
       title: "We Have Small And Best O2 Plants Collection's",
       desc1: 'Oxygen-producing plants, often referred to as "O2 plants," are those that release oxygen into the atmosphere through the process of photosynthesis.',
       desc2: 'Many plants can help filter out pollutants and toxins from the air, such as formaldehyde, benzene, and trichloroethylene. This makes the air cleaner and healthier to breathe.',
-      imageSrc: '/images/plants/aglaonema.png',
+      imageSrc: '/aglaonema.png',
     },
     {
       id: 2,
       title: "Discover Our Exclusive Premium O2 Plants Collection",
       desc1: 'These amazing indoor plants naturally purify your space while adding a touch of vibrant green aesthetics to your daily living environment.',
-      desc2: 'They are specifically cultivated to thrive indoors with minimal maintenance, ensuring you get the best air quality effortlessly.',
-      imageSrc: '/images/plants/aglaonema.png',
+      desc2: 'They are specifically cultivated to thrive indoors with minimal maintenance, ensuring you get the best air quality effortlessly and it is healther to breathe with a clean air.',
+      desc3: 'it refreshes the mood',
+      imageSrc: '/argan.png',
     },
     {
       id: 3,
       title: "Breathe Easy With Our Hand-Picked Air Purifiers",
-      desc1: 'Incorporating greenery into your space has been proven to reduce stress and increase focus, alongside the immense physical health benefits.',
+      desc1: 'Incorporating greenery into your space has been proven to reduce stress and increase focus, alongside the immense physical health benefits. It creates perfect asthetic look to your homes',
       desc2: 'Our collection includes resilient varieties that adapt well to different lighting conditions, making them perfect for any room.',
-      imageSrc: '/images/plants/aglaonema.png',
+      desc3: 'it refreshes the mood',
+      imageSrc: '/sanse.png',
     },
     {
       id: 4,
       title: "Elevate Your Space With Our Top O2 Plants",
       desc1: 'Transform your home into a natural sanctuary. These selected plants are known for their high oxygen output during both day and night.',
-      desc2: 'Experience a fresher atmosphere and better sleep quality by simply adding these beautiful botanical companions to your bedroom or living area.',
-      imageSrc: '/images/plants/aglaonema.png',
+      desc2: 'Experience a fresher atmosphere and better sleep quality by simply adding these beautiful botanical companions to your bedroom or living area. It Provides a postive vibe in the overall environment',
+      desc3: 'it refreshes the mood',
+      imageSrc: '/swiss.png',
     }
   ]
 

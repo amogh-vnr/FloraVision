@@ -7,7 +7,7 @@ export default function TopSellingPlants() {
       name: 'Aglaonema plant',
       price: 'Rs. 300/-',
       description: 'The Aglaonema plant, commonly known as Chinese Evergreen known for its attractive foliage and ease of care',
-      imageSrc: '/images/plants/aglaonema.png',
+      imageSrc: '/aglaonema.png',
     },
     {
       id: 2,
