@@ -1,17 +1,46 @@
 'use client'
 
-import { Play, ChevronRight, Star } from 'lucide-react'
+import { useState } from 'react'
+import { Play, ChevronRight, ChevronLeft, Star } from 'lucide-react'
 
 export default function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const plants = [
+    {
+      id: 1,
+      name: 'Aglaonema plant',
+      category: 'Indoor Plant',
+      imageSrc: '/images/plants/aglaonema.png',
+      fallbackSrc: '/aglaonema.png',
+    },
+    {
+      id: 2,
+      name: 'Plantain Lilies',
+      category: 'Flowering Plant',
+      imageSrc: '/desk-decoration.png',
+      fallbackSrc: '/aglaonema.png',
+    },
+    {
+      id: 3,
+      name: 'Cactus',
+      category: 'Succulent',
+      imageSrc: '/cactus.png',
+      fallbackSrc: '/aglaonema.png',
+    },
+  ]
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % plants.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + plants.length) % plants.length)
+  }
+
   return (
     <section className="relative pt-32 pb-20 min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Center Large Plant Background Placeholder */}
-      <div className="absolute inset-0 flex items-center justify-center z-0 mt-20">
-         {/* The user's large topiary tree image goes here */}
-         <div className="w-[800px] h-[800px] bg-brand-light rounded-full opacity-20 flex items-center justify-center">
-            <span className="text-brand-muted text-sm">Large Topiary Image Background</span>
-         </div>
-      </div>
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 flex flex-col md:flex-row justify-between items-center">
         
@@ -76,37 +105,64 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Floating Plant Card */}
+        {/* Right Floating Plant Card (Slider) */}
         <div className="mt-16 md:mt-0 self-end md:self-center md:mr-10">
-          <div className="glass-card !overflow-visible p-6 flex flex-col items-center w-[300px] hover:border-brand-accent transition-colors duration-300">
+          <div className="bg-[#282d22] rounded-b-[2rem] pt-0 p-6 pb-8 flex flex-col items-center w-[300px] border-x border-b border-[#383d31] relative mt-12 transition-colors duration-300">
+            {/* Custom Wavy Top Shape using SVG (Subtle Curve) */}
+            <svg 
+              viewBox="0 0 100 20" 
+              preserveAspectRatio="none" 
+              className="absolute -top-12 left-[-1px] h-12 pointer-events-none block"
+              style={{ width: 'calc(100% + 2px)' }}
+            >
+              <path d="M0,20 L0,6 Q0,0 6,0 C25,0 25,4 50,4 C75,4 75,0 94,0 Q100,0 100,6 L100,20 Z" fill="#282d22" />
+              <path d="M0,20 L0,6 Q0,0 6,0 C25,0 25,4 50,4 C75,4 75,0 94,0 Q100,0 100,6 L100,20" fill="none" stroke="#383d31" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+            </svg>
+
             {/* Plant Image */}
-            <div className="w-48 h-56 -mt-16 mb-4 drop-shadow-2xl flex items-center justify-center">
-              <img
-                src="/images/plants/aglaonema.png"
-                alt="Aglaonema plant"
-                className="w-full h-full object-contain"
-                onError={(e) => {
-                  const img = e.currentTarget as HTMLImageElement
-                  if (!img.dataset.fallbackTried) {
-                    img.dataset.fallbackTried = '1'
-                    img.src = '/aglaonema.png'
-                    return
-                  }
-                  img.style.display = 'none'
-                  const fallback = img.parentElement?.querySelector('[data-fallback]') as HTMLElement | null
-                  if (fallback) fallback.style.display = 'flex'
-                }}
-              />
-              <div data-fallback className="hidden h-full w-full items-center justify-center bg-brand-light rounded-2xl">
-                <span className="text-brand-muted text-xs">Aglaonema</span>
+            <div className="w-48 h-56 -mt-32 mb-6 relative z-10 flex justify-center">
+              <div className="w-full h-full drop-shadow-2xl">
+                <img
+                  key={currentSlide}
+                  src={plants[currentSlide].imageSrc}
+                  alt={plants[currentSlide].name}
+                  className="w-full h-full object-contain animate-in fade-in slide-in-from-right-4 duration-300"
+                  onError={(e) => {
+                    const img = e.currentTarget as HTMLImageElement
+                    if (!img.dataset.fallbackTried) {
+                      img.dataset.fallbackTried = '1'
+                      img.src = plants[currentSlide].fallbackSrc
+                      return
+                    }
+                    img.style.display = 'none'
+                    const fallback = img.parentElement?.querySelector('[data-fallback]') as HTMLElement | null
+                    if (fallback) fallback.style.display = 'flex'
+                  }}
+                />
+                <div data-fallback className="hidden h-full w-full items-center justify-center bg-brand-light rounded-2xl">
+                  <span className="text-brand-muted text-xs">Image</span>
+                </div>
               </div>
             </div>
             
-            <div className="w-full text-left">
-              <p className="text-xs text-brand-muted mb-1">Indoor Plant</p>
+            <div className="w-full text-left z-10 px-2">
+              <p className="text-xs text-brand-muted mb-1">{plants[currentSlide].category}</p>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-medium text-white tracking-wide">Aglaonema plant</h3>
-                <ChevronRight size={18} className="text-white" />
+                <h3 className="text-xl font-medium text-white tracking-wide">{plants[currentSlide].name}</h3>
+                <div className="flex items-center gap-1">
+                  <button 
+                    onClick={prevSlide}
+                    className="hover:bg-white/10 p-1 rounded-full transition-colors group cursor-pointer"
+                  >
+                    <ChevronLeft size={18} className="text-white group-hover:text-brand-accent transition-colors" />
+                  </button>
+                  <button 
+                    onClick={nextSlide}
+                    className="hover:bg-white/10 p-1 rounded-full transition-colors group cursor-pointer"
+                  >
+                    <ChevronRight size={18} className="text-white group-hover:text-brand-accent transition-colors" />
+                  </button>
+                </div>
               </div>
               
               <button className="border border-white/60 text-white px-8 py-2 rounded-xl hover:bg-white hover:text-brand-dark transition text-sm font-medium w-3/4">
@@ -114,10 +170,15 @@ export default function Hero() {
               </button>
 
               {/* Pagination Dots */}
-              <div className="flex justify-center gap-1.5 mt-6">
-                <div className="w-4 h-1 bg-white rounded-full"></div>
-                <div className="w-1 h-1 bg-white/50 rounded-full"></div>
-                <div className="w-1 h-1 bg-white/50 rounded-full"></div>
+              <div className="flex justify-center gap-1.5 mt-8">
+                {plants.map((_, index) => (
+                  <div 
+                    key={index} 
+                    className={`h-1 rounded-full transition-all duration-300 ${
+                      index === currentSlide ? 'w-4 bg-white' : 'w-1 bg-white/50'
+                    }`}
+                  ></div>
+                ))}
               </div>
             </div>
           </div>

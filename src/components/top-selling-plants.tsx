@@ -1,67 +1,94 @@
 'use client'
 
+import { ShoppingBag } from 'lucide-react'
+
 export default function TopSellingPlants() {
   const plants = [
     {
       id: 1,
       name: 'Aglaonema plant',
-      price: '৳ 300/-',
-      description: 'Vibrant tropical plant perfect for indoor spaces',
+      price: 'Rs. 300/-',
+      description: 'The Aglaonema plant, commonly known as Chinese Evergreen known for its attractive foliage and ease of care',
       imageSrc: '/images/plants/aglaonema.png',
+      fallbackSrc: '/aglaonema.png',
     },
     {
       id: 2,
       name: 'Plantain Lilies',
-      price: '৳ 380/-',
-      description: 'Beautiful flowering plant with unique patterns',
-      imageSrc: '/desk-decoration.png'
+      price: 'Rs. 380/-',
+      description: 'Hostas are primarily grown for their lush, decorative leaves, which come in a wide variety of shapes, sizes,',
+      imageSrc: '/desk-decoration.png',
+      fallbackSrc: '/aglaonema.png',
     },
     {
       id: 3,
       name: 'Cactus',
-      price: '৳ 259/-',
-      description: 'Low maintenance succulent plant',
-      imageSrc: '/cactus.png'
+      price: 'Rs. 259/-',
+      description: 'It is known for their ability to thrive in arid environments',
+      imageSrc: '/cactus.png',
+      fallbackSrc: '/aglaonema.png',
     },
     {
       id: 4,
       name: 'Swiss cheese Plant',
-      price: '৳ 400/-',
-      description: 'Popular climbing plant with unique leaves',
-      imageSrc: '/swiss.png'
+      price: 'Rs. 400/-',
+      description: 'It is a popular tropical houseplant known for its distinctive, perforated leaves',
+      imageSrc: '/swiss.png',
+      fallbackSrc: '/aglaonema.png',
     },
     {
       id: 5,
-      name: 'Sanseviereia plant',
-      price: '৳ 450/-',
-      description: 'Snake plant with air purifying properties',
-      imageSrc: '/sanse.png'
+      name: 'Sansevieria plant',
+      price: 'Rs. 450/-',
+      description: 'It is a popular indoor plant admired for its striking appearance and low-maintenance nature.',
+      imageSrc: '/sanse.png',
+      fallbackSrc: '/aglaonema.png',
     },
     {
       id: 6,
-      name: 'Argan plant',
-      price: '৳ 359/-',
-      description: 'Exotic plant with wonderful foliage',
-      imageSrc: '/argan.png'
+      name: 'Agave plant',
+      price: 'Rs. 359/-',
+      description: 'The Agave plant is a genus of succulent plants known for their striking rosette of thick, fleshy leaves and architectural forms.',
+      imageSrc: '/argan.png',
+      fallbackSrc: '/aglaonema.png',
     },
   ]
 
   return (
-    <section className="bg-transparent py-12 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center font-sans">
+      
+      {/* Title with bracket corners */}
+      <div className="mb-28 mt-10 relative inline-block px-6 py-3">
+        {/* Top-left corner bracket */}
+        <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-brand-accent rounded-tl-sm"></span>
+        {/* Bottom-right corner bracket */}
+        <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-brand-accent rounded-br-sm"></span>
+        <h2 style={{ fontFamily: '"Inter", sans-serif', fontSize: '55px', fontWeight: 600, lineHeight: '100%', letterSpacing: '0%', color: '#ffffff' }}>
           Our Top Selling Plants
         </h2>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-24">
           {plants.map((plant) => (
             <div
               key={plant.id}
-              className="bg-transparent backdrop-blur-sm border border-white/15 rounded-3xl overflow-hidden hover:bg-transparent transition shadow-none"
+              className="bg-[#282d22] rounded-b-[2rem] p-6 pb-8 pt-0 relative flex flex-col border-x border-b border-[#383d31] mt-16 transition-transform hover:-translate-y-2 duration-300"
             >
-              {/* Image Placeholder */}
-              <div className="bg-transparent w-full aspect-[3/4] overflow-hidden border-b border-white/10">
-                {plant.imageSrc ? (
+              {/* Custom Wavy Top Shape using SVG (Subtle Curve) */}
+              <svg 
+                viewBox="0 0 100 20" 
+                preserveAspectRatio="none" 
+                className="absolute -top-12 left-[-1px] h-12 pointer-events-none block"
+                style={{ width: 'calc(100% + 2px)' }}
+              >
+                <path d="M0,20 L0,6 Q0,0 6,0 C25,0 25,15 50,15 C75,15 75,0 94,0 Q100,0 100,6 L100,20 Z" fill="#282d22" />
+                <path d="M0,20 L0,6 Q0,0 6,0 C25,0 25,15 50,15 C75,15 75,0 94,0 Q100,0 100,6 L100,20" fill="none" stroke="#383d31" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+              </svg>
+
+              {/* Popping Image Placeholder */}
+              <div className="w-full flex justify-center relative z-10 -mt-32 mb-6">
+                <div className="w-48 h-56 drop-shadow-2xl">
                   <img
                     src={plant.imageSrc}
                     alt={plant.name}
@@ -70,7 +97,7 @@ export default function TopSellingPlants() {
                       const img = e.currentTarget as HTMLImageElement
                       if (!img.dataset.fallbackTried) {
                         img.dataset.fallbackTried = '1'
-                        img.src = '/aglaonema.png'
+                        img.src = plant.fallbackSrc
                         return
                       }
                       img.style.display = 'none'
@@ -78,22 +105,29 @@ export default function TopSellingPlants() {
                       if (fallback) fallback.style.display = 'flex'
                     }}
                   />
-                ) : null}
-                <div data-fallback className={`${plant.imageSrc ? 'hidden' : 'flex'} h-full w-full items-center justify-center`}>
-                  <span className="text-gray-400">Plant Image</span>
+                  <div data-fallback className="hidden h-full w-full items-center justify-center bg-brand-light rounded-2xl">
+                    <span className="text-gray-400 text-sm">Image</span>
+                  </div>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-5">
-                <h3 className="text-lg font-bold text-white mb-2">{plant.name}</h3>
-                <p className="text-gray-400 text-sm mb-3">{plant.description}</p>
-                <p className="text-green-400 font-bold text-lg mb-4">{plant.price}</p>
+              <div className="flex-1 flex flex-col px-2">
+                <h3 className="text-[17px] font-medium text-white mb-2 tracking-wide">{plant.name}</h3>
+                
+                <p className="text-brand-muted text-[11px] leading-[1.6] mb-6 flex-1 pr-4">
+                  {plant.description}
+                </p>
 
-                <button className="w-full bg-slate-700/80 hover:bg-slate-700 text-white px-4 py-2 rounded-2xl transition border border-white/10">
-                  🛒 Add to Cart
-                </button>
+                <div className="flex items-center justify-between mt-auto">
+                  <span className="text-gray-300 font-medium text-lg">{plant.price}</span>
+                  
+                  <button className="w-9 h-9 rounded-lg border border-gray-500/50 flex items-center justify-center hover:bg-white/10 transition-colors text-gray-300">
+                    <ShoppingBag size={15} />
+                  </button>
+                </div>
               </div>
+
             </div>
           ))}
         </div>

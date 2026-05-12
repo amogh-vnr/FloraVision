@@ -24,13 +24,13 @@ export default function TrendyPlants() {
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center relative overflow-hidden">
-      {/* Title with decorative border */}
-      <div className="relative mb-24 mt-10 inline-block">
-        <h2 className="text-2xl md:text-3xl font-bold text-white relative z-10 px-6 py-2">
-          Our Trendy plants
+      {/* Title with bracket corners */}
+      <div className="mb-24 mt-10 relative inline-block px-6 py-3">
+        <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-brand-accent rounded-tl-sm"></span>
+        <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-brand-accent rounded-br-sm"></span>
+        <h2 style={{ fontFamily: '"Inter", sans-serif', fontSize: '55px', fontWeight: 600, lineHeight: '100%', letterSpacing: '0%', color: '#ffffff' }}>
+          Our Trendy Plants
         </h2>
-        {/* The thin border box wrapping around the text as seen in the design */}
-        <div className="absolute inset-0 border border-brand-accent/60 rounded-xl rounded-bl-sm rounded-tr-sm pointer-events-none -skew-x-6"></div>
       </div>
 
       <div className="w-full max-w-5xl flex flex-col gap-24 md:gap-32 mt-10">

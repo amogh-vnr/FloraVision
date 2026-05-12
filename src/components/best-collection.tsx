@@ -54,27 +54,26 @@ export default function BestCollection() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center font-sans">
       
-      {/* Title with decorative border */}
-      <div className="relative mb-24 mt-10 inline-block">
-        <div className="absolute inset-0 border border-brand-accent/80 rounded-xl pointer-events-none"></div>
-        <div className="absolute -bottom-[2px] left-4 right-4 h-1 bg-[#1d2119] z-0 pointer-events-none"></div>
-        
-        <h2 className="text-2xl md:text-3xl font-bold text-white relative z-10 px-8 py-3 tracking-wide">
+      {/* Title with bracket corners */}
+      <div className="mb-24 mt-10 relative inline-block px-6 py-3">
+        <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-brand-accent rounded-tl-sm"></span>
+        <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-brand-accent rounded-br-sm"></span>
+        <h2 style={{ fontFamily: '"Inter", sans-serif', fontSize: '55px', fontWeight: 600, lineHeight: '100%', letterSpacing: '0%', color: '#ffffff' }}>
           Our Best o2
         </h2>
       </div>
 
-      <div className="max-w-5xl mx-auto w-full relative">
+      <div className="max-w-5xl mx-auto w-full relative pt-16">
         {/* Sliding Card */}
-        <div className="bg-[#282d22] rounded-[3rem] p-8 md:p-14 flex flex-col md:flex-row items-center border border-[#383d31] shadow-2xl relative transition-all duration-500 ease-in-out">
+        <div className="bg-[#282d22] rounded-[3rem] p-8 md:p-14 flex flex-col md:flex-row items-center border border-[#383d31] shadow-2xl relative overflow-visible transition-all duration-500 ease-in-out">
           
-          {/* Popping Image on the left */}
-          <div className="w-full md:w-1/2 flex justify-center md:-ml-24 relative z-10 order-1 md:order-1 mb-8 md:mb-0">
-            <div className="w-72 h-80 md:w-96 md:h-[400px] -mt-16 md:-my-24">
+          {/* Popping Image on the left — overflows above the card */}
+          <div className="w-full md:w-[45%] flex justify-center relative z-10 order-1 md:order-1 mb-8 md:mb-0">
+            <div className="w-72 h-80 md:w-96 md:h-[420px] -mt-24 md:-mt-36 drop-shadow-2xl">
               <img
                 src={currentItem.imageSrc}
                 alt="O2 Plant Collection"
-                className="w-full h-full object-contain drop-shadow-2xl"
+                className="w-full h-full object-contain"
                 onError={(e) => {
                   const img = e.currentTarget as HTMLImageElement
                   if (!img.dataset.fallbackTried) {
